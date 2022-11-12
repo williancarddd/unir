@@ -1,0 +1,22 @@
+Definição básica: https://pt.wikipedia.org/wiki/Comunica%C3%A7%C3%A3o_entre_processos#:~:text=A%20sincroniza%C3%A7%C3%A3o%20entre%20processos%20permite,que%20o%20recurso%20seja%20libertado.
+
++Conceitos gerais e aprofundamento sobre Sincronização e Comunicação de Processos: https://sites.google.com/site/proffernandosiqueiraso/aulas/7-sincronizacao-e-comunicacao-de-processos
+
++Conceitos especificos ralacionados ao tema: http://walderson.com/site/wp-content/uploads/2014/05/Aula09-Sincronizacao-e-comunicacao-entre-processos.pdf
+
++Conceitos e aprimoramento de ideias do tema: https://www.professores.uff.br/mquinet/wp-content/uploads/sites/42/2017/08/7.pdf
+
++Wait-Free Synchronization ideia de conteúdo especifico(Artigo): https://dl.acm.org/doi/pdf/10.1145/114005.102808
+
+
++programação concorrente: https://www.inf.unioeste.br/~jorge/COMPILADORES/COMPILADORES/ANO%202011/ARTIGOS%20e%20LINKS%20INTERESSANTES/ARTIGOS/Programa%E7%E3o%20Concorrente%20-%20Introdu%E7%E3o.pdf
+
+http://www.inf.ufes.br/~rgomes/so_fichiers/aula14.pdf (Comunicação entre processos)
+
+https://blog.pantuza.com/artigos/o-que-sao-e-como-funcionam-as-threads (threads)
+
+http://www.inf.ufes.br/~zegonc/material/Sistemas_Operacionais/Processos%20(1)%20-%20Conceitos%20basicos.pdf (Processos na computação)
+
+https://www.google.com/search?q=Processos+conceito&hl=en&sxsrf=ALiCzsYpNVsD6tlLhBkaS7jOTvmRUCxmVA:1667689889989&source=lnms&tbm=isch&sa=X&ved=2ahUKEwi02_P7lJj7AhXOILkGHfioCMUQ_AUoAXoECAIQAw&biw=1366&bih=636&dpr=1#imgrc=jIkfGf6Y9PmY8M (processos contexto geral)
+
+https://celsokitamura.com.br/o-que-e-thread/#:~:text=Em%20resumo%2C%20thread%20%C3%A9%20a,processo%20pode%20conter%20v%C3%A1rias%20threads.

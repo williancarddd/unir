@@ -1,0 +1,1 @@
+William 10.000000 Jose 9.000000 Pedro 8.000000 Guilherme 7.000000 Ribeiro 6.000000 Karol 5.000000 Isabela 4.000000 Luiz 3.000000 Samuel 2.000000 Vinicius 1.000000 

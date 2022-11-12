@@ -1,0 +1,15 @@
+Trabalho de Direito
+autor:William Cardoso Barbosa
+Curso: Ciência da Computação	
+Disciplina: Noções de Direito
+Tema: artigos da lei 9.609/1998
+
+A lei 9.609/1998 , também  conhecida como lei Do Software, garante ao criador de softwares a proteção da propriedade intelectual de seus programas, permitindo que esse  não seja alterado, modificado ou redistribuído sem a autorização do criador.
+
+Como forma de demonstrar fixação do conteúdo, irei explicar os  16 artigos com seus respectivos paragráfos e incisos.
+
+Art. 1º Programa de computador é a expressão de um conjunto organizado de instruções em linguagem natural ou codificada, contida em suporte físico de qualquer natureza, de emprego necessário em máquinas automáticas de tratamento da informação, dispositivos, instrumentos ou equipamentos periféricos, baseados em técnica digital ou análoga, para fazê-los funcionar de modo e para fins determinados.
+explicação: Esse artigo explica o que é um programa de computador(conjunto organizado de instruções em linguagem natural ou codificada) e quais os meios necessários para essas instruções serem executadas.
+
+Art. 2º O regime de proteção à propriedade intelectual de programa de computador é o conferido às obras literárias pela legislação de direitos autorais e conexos vigentes no País, observado o disposto nesta Lei.
+

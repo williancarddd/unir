@@ -1,0 +1,29 @@
+Notações
+
+1. infix: (A + B) * C + D / (E + F * G) - H
+postfix: 
+prefix: 
+
+2. postfix: A B C D * - E / + F + G H / -
+infix: 
+prefix: 
+
+3. prefix: - / + * A B C D / E + F G
+infix: 
+postfix: 
+
+4. infix: A - B - C * (D + E / F - G) - H
+postfix: 
+prefix: 
+
+5. Qual expressão posfixa é equivalente à seguinte expressão infixa?
+(A + B) - C * D / (E - F / G)
+
+6. Qual expressão infixa é equivalente à seguinte expressão posfixa?
+A B * C / D E + F G H / * - +
+
+7. Qual é o valor gerado pela seguinte expressão posfixa?
+54 6 + 7 4 - * 9 / 35 15 + +
+
+8. Use o algoritmo de conversão para mudar a seguinte expressão infixa para posfixa (simular a pilha de execução a cada iteração e a saída da string).
+(A * B - (C - D)) / (E + F)

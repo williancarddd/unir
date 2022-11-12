@@ -1,0 +1,7 @@
+William Cardoso;Rua Aroeira;Ciencia da computacao
+Joao Pedro;Rua Barao de Itapetininga;Ciencia da computacao
+Joao Vitor;Rua Alferes Poli;Ciencia da computacao
+Guilherme Silva;Rua Alferes Poli;Artes
+Guilherme Junior;Rua Dantes Mendoca Poli;Jornalismo
+Maria Silva;Rua Alferes Poli;Medicina
+Guilherme Barbosa;Rua Alferes Poli;Direito

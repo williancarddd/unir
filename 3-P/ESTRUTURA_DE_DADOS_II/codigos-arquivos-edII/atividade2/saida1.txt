@@ -1,0 +1,7 @@
+15William Cardoso11Rua Aroeira21Ciencia da computacao
+10Joao Pedro25Rua Barao de Itapetininga21Ciencia da computacao
+10Joao Vitor16Rua Alferes Poli21Ciencia da computacao
+15Guilherme Silva16Rua Alferes Poli5Artes
+16Guilherme Junior23Rua Dantes Mendoca Poli10Jornalismo
+11Maria Silva16Rua Alferes Poli8Medicina
+17Guilherme Barbosa16Rua Alferes Poli7Direito

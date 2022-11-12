@@ -1,0 +1,7 @@
+nome=William Cardoso|endereco=Rua Aroeira|curso=Ciencia da computacao
+nome=Joao Pedro|endereco=Rua Barao de Itapetininga|curso=Ciencia da computacao
+nome=Joao Vitor|endereco=Rua Alferes Poli|curso=Ciencia da computacao
+nome=Guilherme Silva|endereco=Rua Alferes Poli|curso=Artes
+nome=Guilherme Junior|endereco=Rua Dantes Mendoca Poli|curso=Jornalismo
+nome=Maria Silva|endereco=Rua Alferes Poli|curso=Medicina
+nome=Guilherme Barbosa|endereco=Rua Alferes Poli|curso=Direito
