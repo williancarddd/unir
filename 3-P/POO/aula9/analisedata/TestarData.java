@@ -3,6 +3,7 @@ import java.time.LocalDate;
 public class TestarData implements AnaliseData {
   public int calcularIdade(LocalDate dataNascimento, LocalDate date){
     int idade = date.getYear() - dataNascimento.getYear();
+    
     if (date.getMonthValue() < dataNascimento.getMonthValue()) {
       idade--;
     } else if (date.getMonthValue() == dataNascimento.getMonthValue()) {
