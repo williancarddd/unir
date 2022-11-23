@@ -55,9 +55,9 @@ Exemplo de Entrada
 
 /*
 Saida 1
-Para cada arquivo de entrada seu programa deve produzir um arquivo de saída padrão (“saida1.txt”) com K+1 linhasnasaída para cada teste.
-A primeira linha deve conter um contador CONT (CONT ≥ 0) indicando o número do teste, seguido de Klinhas, ondeaI-ésima linha deve conter: um inteiro O, indicando a origem; um inteiro D, indicando o destino; e uminteiro M, indicandootempo mínimo, em horas, para se enviar uma carta na I-ésima consulta. 
-Se não houver meio de comunicaçãoentreascidades da consulta, o programa deve escrever: um inteiro O, indicando a origem; um inteiro D, indicandoodestino;eamensagem “Rota desconhecida!”. 
+Para cada arquivo de entrada seu programa deve produzir um arquivo de saída padrão (“saida1.txt”) com K+1 linhasna saída para cada teste.
+A primeira linha deve conter um contador CONT (CONT ≥ 0) indicando o número do teste, seguido de K linhas, onde a I-ésima linha deve conter: um inteiro O, indicando a origem; um inteiro D, indicando o destino; e uminteiro M, indicando o tempo mínimo, em horas, para se enviar uma carta na I-ésima consulta. 
+Se não houver meio de comunicação entre as cidades da consulta, o programa deve escrever: um inteiro O, indicando a origem; um inteiro D, indicando o destino;e a mensagem “Rota desconhecida!”. 
 Escreva uma linha em branco (“\n”) após cada caso de teste.
 
 Exemplo de saída para o exemplo de entrada acima:
@@ -148,6 +148,52 @@ int remove_aresta(Grafo *gr, int orig, int dest){
     return 1;
 }
 
+int djkistra(Grafo *gr, int orig, int dest){
+    /*
+    
+    1 2 0
+    1 3 6
+    1 4 6
+    4 3 0
+    4 1 -1*/
+  
+    int i, cont = 0, aux = 0;
+    int *dist = (int*) malloc(gr->nro_vertices * sizeof(int));
+    int *visitado = (int*) malloc(gr->nro_vertices * sizeof(int));
+    for(i = 0; i < gr->nro_vertices; i++){
+        dist[i] = 999999;
+        visitado[i] = 0;
+    }
+    dist[orig] = 0;
+
+    while(1){
+        int menor_dist = 999999;
+        int menor_vertice = -1;
+        for(i = 0; i < gr->nro_vertices; i++){
+            if(!visitado[i] && dist[i] < menor_dist){
+                menor_dist = dist[i];
+                menor_vertice = i;
+            }
+        }
+        if(menor_vertice == -1)
+            break;
+        visitado[menor_vertice] = 1;
+        Node *node = gr->adj[menor_vertice];
+        while(node != NULL){
+            int v = node->vertice;
+            if(dist[menor_vertice] + node->peso < dist[v]){
+                dist[v] = dist[menor_vertice] + node->peso;
+            }
+            node = node->prox;
+        }
+    }
+
+    if(dist[dest] == 999999)
+        return -1;
+    else
+        return dist[dest];
+}
+
 int consulta_aresta(Grafo *gr, int orig, int dest, int *peso){
     if(gr == NULL)
         return 0;
@@ -163,44 +209,32 @@ int consulta_aresta(Grafo *gr, int orig, int dest, int *peso){
     }
 }
 
-void imprime_grafo(Grafo *gr);
-
 
 int main() {
-  FILE *arq;
-  arq = fopen("entrada.txt", "r");
-  if(arq == NULL){
-    printf("Erro, nao foi possivel abrir o arquivo de entrada \n");
-  }
+  
+  Grafo *gr;
+  int N, E, K, O, D, M, X, Y, H,  i, j, cont = 0;
+  FILE *arq = fopen("entrada.txt", "r");
 
-  int N, E; // N = número de cidades, E = número de acordos de envio de mensagens
-  // read first line
-  fscanf(arq, "%d %d", &N, &E);
-  Grafo* gr = cria_grafo(N, 0, 0);
-  int i;
-  for(i = 0; i < E; i++){
-    int X, Y, H;
-    fscanf(arq, "%d %d %d", &X, &Y, &H);
-    insere_aresta(gr, X, Y, H);
-  }
+  while(1){
+    fscanf(arq, "%d %d ", &N, &E);
+    if(N == 0 && E == 0)
+      break;
+    gr = cria_grafo(N);
+    for(i = 0; i < E; i++){
+      fscanf(arq, "%d %d %d ", &X, &Y, &H);
+      insere_aresta(gr, X, Y, H);
+    }
+    fscanf(arq, "%d ", &K);
 
-  int K; // K = número de consultas
-  fscanf(arq, "%d", &K);
+    printf("\n----------------------\n");
+    for(i = 0; i < K; i++){
+      fscanf(arq, "%d %d ", &O, &D);
+      M = djkistra(gr, O, D);
+      printf("%d %d %d\n", O, D, M);
 
-  for(i = 0; i < K; i++){
-    int O, D;
-    fscanf(arq, "%d %d", &O, &D);
-    int peso;
-    if(consulta_aresta(gr, O, D, &peso)){
-      printf("%d %d %d \n", O, D, peso);
-    }else{
-      printf("%d %d Rota desconhecida! \n", O, D);
     }
   }
-
-
-  fclose(arq);
-  libera_grafo(gr);
 
   return 0;
 }
