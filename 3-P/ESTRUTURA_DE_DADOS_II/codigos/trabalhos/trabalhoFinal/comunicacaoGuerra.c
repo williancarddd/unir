@@ -1,79 +1,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
-
-/**
- * No ano 2666, após diversas tentativas da ONU de manter a paz no mundo, explode a terceira guerra mundial. 
- * Segredosindustriais, comerciais e militares obrigaram todos os países a utilizarem serviços de espionagem
- * extremamente sofisticados,de forma que em cada cidade do mundo há ao menos um espião de cada país.
- * Esses espiões precisamse comunicarcomoutros espiões, com informantes e mesmo com as suas centrais durante as suas ações.
- * Infelizmente não existeumaformasegura de um espião se comunicar em um período de guerra, então as mensagens são sempre enviadas emcódigoparaquesomente o destinatário consiga ler a mensagem e entender o seu significado. 
- * Os espiões utilizam o único serviço que funciona no período de guerra, o “malote da Eucatur”. 
- * Cada cidadepossui umaagência onde as cartas são enviadas. As cartas podem ser enviadas diretamente ao seu destino ou a outras agências, atéquea carta chegue à agência da cidade de destino, se isso for possível. 
- * Uma agência na cidade A pode enviar diretamente uma carta impressa para a agência da cidade B se houver umacordodeenvio de cartas, que determina o tempo, em horas, que uma carta leva para chegar da cidade Aà cidadeB(enãonecessariamente o contrário). 
- * Se não houver um acordo entre as agências A e B, a agência A pode tentar enviar acartaaquantas agências for necessário para que a carta chegue ao seu destino, se isso for possível. Algumas agências são interligadas por meios eletrônicos de comunicação, como satélites e fibras ópticas. 
- * Antes daguerra,essas ligações atingiam todas as agências, fazendo com que uma carta fosse enviada de forma instantânea, mas duranteoperíodo de hostilidades cada país passou a controlar a comunicação eletrônica e uma agência somente pode enviar umacartaa outra agência por meio eletrônico (ou seja, instantaneamente) se ela estiver no mesmo país. 
- * Duas agências, AeB, estãono mesmo país se houver uma forma de uma carta impressa enviada de uma das agências ser entregue na outra agência. O serviço de espionagem do seu país conseguiu obter o conteúdo de todos os acordos de envios de mensagens existentesnomundo e deseja descobrir algumas informações sobre este serviço de envio de mensagens. 
- * Você seria capaz de ajudá-lo?
- * 
- */
-
-/*
-Entrada
-A entrada contém vários casos de teste, e será realizada por meio de um arquivo padrão (“entrada.txt”).
-Aprimeiralinhadecada caso de teste contém dois inteiros separados por um espaço, N (1 ≤ N ≤ 500) e E (0 ≤ E ≤ N^2), indicandoonúmerodecidades (numeradas de 1 a N) e de acordos de envio de mensagens, respectivamente.
-Seguem-se, então, E linhas, cada uma com três inteiros separados por espaços, X, Y e H (1 ≤ X, Y≤ N, 1≤H≤1000),
-indicando que existe um acordo para enviar uma carta impressa da cidade X à cidade Y , e que tal carta será entreguem horas.
-
-Em seguida, haverá uma linha com um inteiro K (0 ≤ K ≤ 100), o número de consultas.
-Finalmente, virão Klinhas, cada uma representando uma consulta e contendo dois inteiros separados por um espaço, O e D (1 ≤ O, D≤N). 
-Vocêdeve determinar o tempo mínimo para se enviar uma carta da cidade O à cidade D. A entrada termina quando N=E=0
-
-Exemplo de Entrada
-4 5
-1 2 5
-2 1 10
-3 4 8
-4 3 7
-2 3 6
-5
-1 2
-1 3
-1 4
-4 3
-4 1
-3 3
-1 2 10
-2 3 1
-3 2 1
-3
-1 3
-3 1
-3 2
-0 0
-*/
-
-/*
-Saida 1
-Para cada arquivo de entrada seu programa deve produzir um arquivo de saída padrão (“saida1.txt”) com K+1 linhasna saída para cada teste.
-A primeira linha deve conter um contador CONT (CONT ≥ 0) indicando o número do teste, seguido de K linhas, onde a I-ésima linha deve conter: um inteiro O, indicando a origem; um inteiro D, indicando o destino; e uminteiro M, indicando o tempo mínimo, em horas, para se enviar uma carta na I-ésima consulta. 
-Se não houver meio de comunicação entre as cidades da consulta, o programa deve escrever: um inteiro O, indicando a origem; um inteiro D, indicando o destino;e a mensagem “Rota desconhecida!”. 
-Escreva uma linha em branco (“\n”) após cada caso de teste.
-
-Exemplo de saída para o exemplo de entrada acima:
-0
-1 2 0
-1 3 6
-1 4 6
-4 3 0
-4 1 Rota desconhecida!
-1
-1 3 10
-3 1 Rota desconhecida!
-3 2 0
-*/
-
-//usando a estrutura de dados grafo
+#include <string.h>
+#define INFINITO 9999999
 
 typedef struct grafo Grafo;
 typedef struct node Node;
@@ -102,25 +31,10 @@ Grafo *cria_grafo(int nro_cidades){
     return gr;
 }
 
-void libera_grafo(Grafo *gr){
-    if(gr != NULL){
-        int i;
-        for(i = 0; i < gr->nro_vertices; i++){
-            Node *node = gr->adj[i];
-            while(node != NULL){
-                Node *t = node;
-                node = node->prox;
-                free(t);
-            }
-        }
-        free(gr->adj);
-        free(gr);
-    }
-}
-
 int insere_aresta(Grafo *gr, int orig, int dest, int peso){
     if(gr == NULL)
         return 0;
+    // GRAFO DIRECIONADO
     Node *node = (Node*) malloc(sizeof(Node));
     node->vertice = dest;
     node->peso = peso;
@@ -129,84 +43,86 @@ int insere_aresta(Grafo *gr, int orig, int dest, int peso){
     return 1;
 }
 
-int remove_aresta(Grafo *gr, int orig, int dest){
+
+int mesmo_pais(Grafo *gr, int orig, int dest){
     if(gr == NULL)
         return 0;
-    Node *node = gr->adj[orig];
-    Node *ant = NULL;
-    while(node != NULL && node->vertice != dest){
-        ant = node;
-        node = node->prox;
+    //se existir orig -> dest e dest <- orig
+    Node *nodeO = gr->adj[orig];
+    Node *nodeD = gr->adj[dest];
+    while(nodeO != NULL && nodeO->vertice != dest){
+        nodeO = nodeO->prox;
     }
-    if(node == NULL)
-        return 0;
-    if(ant == NULL)
-        gr->adj[orig] = node->prox;
-    else
-        ant->prox = node->prox;
-    free(node);
-    return 1;
+    while(nodeD != NULL && nodeD->vertice != orig){
+        nodeD = nodeD->prox;
+    }
+    if(nodeO != NULL && nodeD != NULL)
+        return 1;
+    return 0;
+   
+}
+
+void imprime_grafo(Grafo *gr){
+    if(gr == NULL)
+        return;
+    int i;
+    for(i = 0; i < gr->nro_vertices; i++){
+        Node *node = gr->adj[i];
+        printf("%d: ", i);
+        while(node != NULL){
+            printf("%d ", node->vertice);
+            node = node->prox;
+        }
+        printf(" \n");
+    }
 }
 
 int djkistra(Grafo *gr, int orig, int dest){
-    /*
-    
-    1 2 0
-    1 3 6
-    1 4 6
-    4 3 0
-    4 1 -1*/
-  
+    if(gr == NULL)
+        return 0;
     int i, cont = 0, aux = 0;
     int *dist = (int*) malloc(gr->nro_vertices * sizeof(int));
     int *visitado = (int*) malloc(gr->nro_vertices * sizeof(int));
     for(i = 0; i < gr->nro_vertices; i++){
-        dist[i] = 999999;
+        dist[i] = INFINITO;
         visitado[i] = 0;
     }
     dist[orig] = 0;
-
     while(1){
-        int menor_dist = 999999;
-        int menor_vertice = -1;
+        int menor_distancia = INFINITO;
+        int prox_vertice = -1;
         for(i = 0; i < gr->nro_vertices; i++){
-            if(!visitado[i] && dist[i] < menor_dist){
-                menor_dist = dist[i];
-                menor_vertice = i;
+            if(!visitado[i] && dist[i] < menor_distancia ){
+                
+                menor_distancia = dist[i];
+                prox_vertice = i;
             }
         }
-        if(menor_vertice == -1)
+        if(prox_vertice == -1)
             break;
-        visitado[menor_vertice] = 1;
-        Node *node = gr->adj[menor_vertice];
+        visitado[prox_vertice] = 1;
+        Node *node = gr->adj[prox_vertice];
         while(node != NULL){
             int v = node->vertice;
-            if(dist[menor_vertice] + node->peso < dist[v]){
-                dist[v] = dist[menor_vertice] + node->peso;
+            if(!visitado[v]){
+                if(mesmo_pais(gr, prox_vertice, v)){
+                    if(dist[v] > dist[prox_vertice]){
+                        dist[v] = dist[prox_vertice];
+                    }
+                }
+                else{
+                    if(dist[v] > dist[prox_vertice] + node->peso){
+                        dist[v] = dist[prox_vertice] + node->peso;
+                    }
+                }
+
             }
             node = node->prox;
         }
     }
-
-    if(dist[dest] == 999999)
+    if(dist[dest] == INFINITO)
         return -1;
-    else
-        return dist[dest];
-}
-
-int consulta_aresta(Grafo *gr, int orig, int dest, int *peso){
-    if(gr == NULL)
-        return 0;
-    Node *node = gr->adj[orig];
-    while(node != NULL && node->vertice != dest){
-        node = node->prox;
-    }
-    if(node == NULL)
-        return 0;
-    else{
-        *peso = node->peso;
-        return 1;
-    }
+    return dist[dest];
 }
 
 
@@ -215,26 +131,55 @@ int main() {
   Grafo *gr;
   int N, E, K, O, D, M, X, Y, H,  i, j, cont = 0;
   FILE *arq = fopen("entrada.txt", "r");
+  FILE *arq2 = fopen("saida1.txt", "w");
+  FILE *arq3 = fopen("saida2.txt", "w");
 
   while(1){
     fscanf(arq, "%d %d ", &N, &E);
-    if(N == 0 && E == 0)
-      break;
+    //printf("%d %d\n", N, E );
+    if(N == 0 && E == 0)break;
     gr = cria_grafo(N);
+    char info[150];
+    int tam_info = 0;
     for(i = 0; i < E; i++){
       fscanf(arq, "%d %d %d ", &X, &Y, &H);
+      //printf("%d %d %d\n", X, Y, H);
       insere_aresta(gr, X, Y, H);
     }
     fscanf(arq, "%d ", &K);
-
-    printf("\n----------------------\n");
+    //printf("%d\n", K);
+    printf("%d\n", cont);
+    if (cont > 0) fprintf(arq2, "\n");
+    fprintf(arq2, "%d\n", cont);
+    // concatena o numero do caso de teste
+    sprintf(info, "|%d|", cont);
     for(i = 0; i < K; i++){
       fscanf(arq, "%d %d ", &O, &D);
+      //printf("%d %d\n", O, D);
+      char aux[80]; 
       M = djkistra(gr, O, D);
-      printf("%d %d %d\n", O, D, M);
-
+      printf("%d %d", O, D);
+      fprintf(arq2, "%d %d", O, D);
+      // exemplo aux : 1,2,3 ou 1,2,Rota desconhecida
+      sprintf(aux, "%d,%d", O, D);
+      if(M == -1) {
+        printf(" Rota desconhecida! \n");
+        fprintf(arq2, " Rota desconhecida! \n");
+        strcat(aux, ",Rota desconhecida!|");
+      }
+      else {
+        printf(" %d\n", M);
+        fprintf(arq2, " %d\n", M);
+        sprintf(aux, "%d,%d,%d|", O, D, M);
+      }
+      strcat(info, aux);
     }
-  }
 
+    fprintf(arq3, "%ld%s\n", strlen(info),info);
+    cont++;
+  }
+  fclose(arq);
+  fclose(arq2);
+  fclose(arq3);
   return 0;
 }
