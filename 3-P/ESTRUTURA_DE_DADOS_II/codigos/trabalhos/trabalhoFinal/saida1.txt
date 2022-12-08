@@ -1,0 +1,11 @@
+0
+0 1 0
+0 2 6
+0 3 6
+3 2 0
+3 0 Rota desconhecida! 
+
+1
+0 2 10
+2 0 Rota desconhecida! 
+2 1 0

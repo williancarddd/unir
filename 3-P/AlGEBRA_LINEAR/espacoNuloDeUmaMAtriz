@@ -1,0 +1,68 @@
+>> alfa  = 1
+alfa = 1
+>> beta = 2
+beta = 2
+>> v1
+v1 =
+
+   1  -2   1   0
+
+>> v2
+v2 =
+
+  -1   1   0   1
+
+>> x = v1*alfa + v2*beta
+x =
+
+  -1   0   1   2
+
+>> A
+A =
+
+   1   0  -1   1
+   0   1   2  -1
+
+>> A/x
+ans =
+
+  -9.0649e-17
+            0
+
+>> A
+A =
+
+   1   0  -1   1
+   0   1   2  -1
+
+>> x
+x =
+
+  -1   0   1   2
+
+>> A\x
+error: operator \: nonconformant arguments (op1 is 2x4, op2 is 1x4)
+>> A/x
+ans =
+
+  -9.0649e-17
+            0
+
+>> alfa
+alfa = 1
+>> beta
+beta = 2
+>> beta = 1
+beta = 1
+>> x = v1*alfa + v2*beta
+x =
+
+   0  -1   1   1
+
+>> A/x
+ans =
+
+   0
+   0
+
+>>
