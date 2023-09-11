@@ -1,0 +1,13 @@
+x = -2*pi:0.1:2*pi;
+subplot(2,1,1)
+plot(x,sin(x),'.r','linewidth',3)
+axis([-3*pi,4*pi,-3,1.5])
+title('Gráfico de sin(x).')
+xlabel('x')
+ylabel('Seno de x')
+subplot(2,1,2)
+plot(x,cos(x),'-.m','linewidth',3)
+axis([-2.5*pi,2.1*pi,-1.5,2.5])
+title('Gráfico de cos(x).')
+xlabel('x')
+ylabel('Cosseno de x')

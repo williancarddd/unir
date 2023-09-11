@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Meu Perfil</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='style/normalize.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='style/index.css'>
+
+    <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+
+    <script src='scripts/sentence.js'></script>
+</head>
+<body>
+    <main>
+        <div class="box_profile">
+            <inside class="box_image_area">
+                <image class="image_profile" src="assets/29506391.jpeg" >
+            </inside>
+            <section class="box_profile_area">
+                <div class="box_links_social">
+                    <div>
+                        <a href="https://www.instagram.com/williancarddd/"  target="_blank"><img src="assets/icons8-instagram.gif" alt=""></a>
+                    </div>
+                    <div>
+                        <a href="https://www.linkedin.com/in/william-cardoso-9363a015a/" target="_blank"><img src="assets/icons8-linkedin.gif" alt="" style="width: 50px; height: 50px;"></a>
+                    </div>
+                    <div>
+                        <a href="https://github.com/williancarddd" target="_blank"><img src="assets/icons8-github.gif" alt=""></a>
+                    </div>
+                </div>
+                <p id="demo" class="bio"></p>
+            </section>
+        </div>
+        <div>
+            
+        </div>
+    </main>
+</body>
+<script>
+    var i = 0;
+    var txt = 'Olá, eu sou William Cardoso, estudante de Ciência da Computação na Universidade Federal de Rondônia. E eu estou fazendo essa página para a atividade de Introdução ao Desenvolvimento Web.';
+    var speed = 65;
+
+    function typeWriter() {
+        if (i < txt.length) {
+            document.getElementById("demo").innerHTML += txt.charAt(i);
+            i++;
+            setTimeout(typeWriter, speed);
+        } else {
+            i = 0;
+            setTimeout(typeWriter, 1500); 
+            document.getElementById("demo").innerHTML = "";
+        }
+    }
+
+    typeWriter();
+    </script>
+</html>

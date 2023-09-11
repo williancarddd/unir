@@ -1,0 +1,36 @@
+.menu-bar {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    background-color: #fff;
+    border-bottom: 1px solid #ebebeb;
+    height: 100px;
+    line-height: 50px;
+    position: relative;
+    z-index: 100;
+    width: 100%;
+    box-shadow: 0 1px 3px rgba(0,0,0,.1);
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,.1);
+    -moz-box-shadow: 0 1px 3px rgba(0,0,0,.1);
+    gap: 20px;
+}
+
+.opcao {
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    font-size: 18px;
+    box-shadow: 4px 4px 5px 3px rgba(0,0,0,0.62);
+-webkit-box-shadow: 4px 4px 5px 3px rgba(0,0,0,0.62);
+-moz-box-shadow: 4px 4px 5px 3px rgba(0,0,0,0.62);
+    width: 100px;
+    padding: 4px;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+abbr {
+    text-decoration: none;
+    color: #000;
+
+}
