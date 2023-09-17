@@ -1,0 +1,23 @@
+# Crie a imagem do servidor
+docker build -t chat-server -f dockerfile.server .
+
+# Execute o servidor em um contêiner
+docker run -d --name server chat-server
+
+# Crie a imagem do cliente
+docker build -t chat-client -f dockerfile.client .
+
+# E os clientes em contêineres separados (quantos desejar)
+docker run -it --rm chat-client
+
+#listar containers
+docker ps -a
+
+#listar imagens
+docker image ls
+
+#criar rede 
+docker create network nome-rede
+
+#conectar rede ao docker
+docker run -it --network=nome-rede image-nome
