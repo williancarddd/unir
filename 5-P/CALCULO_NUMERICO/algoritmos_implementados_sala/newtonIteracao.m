@@ -1,4 +1,4 @@
-function [x] = newtonIteracao (f, fd, x0, tol, n)
+function [x] = newton (f, fd, x0, tol, n)
   i = 0;
   while (i < n)
     x = x0 - f(x0)/fd(x0);

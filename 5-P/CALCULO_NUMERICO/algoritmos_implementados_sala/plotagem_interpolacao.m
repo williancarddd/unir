@@ -1,4 +1,4 @@
-f = @(x) (9*x.^2 - 13*x -16 ) / 6;
+f = @(x) (((2*x.^2) / 3) - ((7*x) / 3 ) + 1 );
 x = linspace(-3, 10);
 
 plot(x, f(x), 'b', 'LineWidth', 2); % Traça a função f(x) em azul
