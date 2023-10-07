@@ -3,7 +3,7 @@ function [x] = metodoNewtonMatriz(x0, tol, N)
   k = 1;
   
   while(k < = N)
-    s = -JF(x)\funcaoX(x);
+    s = -JF(x)\funcaoX(x); 
     x = x + s;
     disp(x)
     erro = max(abs(x -x0)/max(abs(x)));

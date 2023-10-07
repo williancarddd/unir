@@ -1,4 +1,4 @@
-function sr = erroInterpolcao(x, y, f)
+function sr = erroInterpolacao(x, y, f)
   n = length(x);
   sr = 0;
   

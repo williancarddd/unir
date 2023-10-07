@@ -1,4 +1,4 @@
-function [S] = interpolacaoNewton(x, y, p)
+function [S] = newtonInterpolacao(x, y, p)
   n = size(x);
   T = tabelaDiferencasDivididas(x, y);
   S = y(1);

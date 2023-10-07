@@ -1,4 +1,4 @@
-function sr = erroQuadratico(x, y, f)
+function sr = erroInterpolacaoQuadratica(x, y, f)
   n = length(x);
   e =  zeros(n, 1);
   
